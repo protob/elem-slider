@@ -1,0 +1,84 @@
+:root {
+  --handle-2: #1a237e;
+  --handle-1: #5e35b1;
+  --bar-active: #64b5f6;
+  --bar: #bbdefb;
+}
+
+/*---------- slider----------*/
+.el-slider {
+  background: var(--bar-active);
+  width: calc(100% - 10px);
+  max-width: 300px;
+  height: 10px;
+  position: relative;
+  margin-top: 40px;
+}
+
+.el-slider:after {
+  right: -20px;
+  top: 0;
+  position: absolute;
+  content: "";
+  background: red;
+  z-index: 0;
+  width: 20px;
+  height: 10px;
+}
+.el-slider-value {
+  border: 2px solid black;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100px;
+  font-weight: bold;
+}
+
+.el-slider-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 320px;
+}
+
+/*----------  handles ----------*/
+.el-slider-handle1,
+.el-slider-handle2 {
+  position: absolute;
+  background: var(--handle-1);
+  left: 0;
+  top: -6px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.el-slider-handle1 {
+  margin-right: 30px;
+}
+
+.el-slider-handle2 {
+  /* top: -28px; */
+
+  background: var(--handle-2);
+}
+
+/*----------  handle indicators  ----------*/
+
+.el-slider-handle1-indicator,
+.el-slider-handle2-indicator {
+  position: absolute;
+  top: 6px;
+  width: 20000px;
+  height: 12px;
+  background: var(--bar);
+  content: "";
+  z-index: 0;
+}
+.el-slider-handle1-indicator {
+  left: -20000px;
+}
+
+.el-slider-handle2-indicator {
+  right: -20000px;
+}
