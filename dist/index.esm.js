@@ -1,33 +1,58 @@
-import { __assign } from 'tslib';
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
-var Renderer =
-/** @class */
-function () {
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+var Renderer = /*#__PURE__*/function () {
   function Renderer(id) {
+    _classCallCheck(this, Renderer);
+
     this.id = id.indexOf("#") !== -1 ? id.substr(1) : id;
   }
 
-  Renderer.prototype.prepareHandle = function (handleNr) {
-    var offset = handleNr === 1 ? 0 : "100%";
-    var html = "<div class=\"" + this.id + "-handle" + handleNr + " el-slider-handle" + handleNr + "\" id=\"" + this.id + "-handle" + handleNr + "\" data-parent-id=\"" + this.id + "\" style=\"left: " + offset + "\">\n    <span class=\"" + this.id + "-handle1-indicator el-slider-handle" + handleNr + "-indicator\" id=\"" + this.id + "-handle" + handleNr + "-indicator\"></span>\n    </div>";
-    return html;
-  };
-
-  Renderer.prototype.prepareMarkup = function () {
-    var handle1 = this.prepareHandle(1),
-        handle2 = this.prepareHandle(2);
-    var html = "<div class=\"el-slider-wrap\" > \n      <div id=\"" + this.id + "-el-slider\" class=\"el-slider " + this.id + "-el-slider\">" + handle1 + handle2 + "</div> \n      <div id=\"" + this.id + "-value1\" class=\"el-slider-value " + this.id + "-value\"></div > \n      <div id=\"" + this.id + "-value2\" class=\"el-slider-value " + this.id + "-value\" > \n      </div>\n      </div>";
-    return html;
-  };
-
-  Renderer.prototype.renderMarkup = function () {
-    var html = this.prepareMarkup(),
-        wrapper = document.querySelector("#" + this.id);
-
-    if (wrapper) {
-      wrapper.innerHTML = html;
+  _createClass(Renderer, [{
+    key: "prepareHandle",
+    value: function prepareHandle(handleNr) {
+      var offset = handleNr === 1 ? 0 : "100%";
+      var html = "<div class=\"".concat(this.id, "-handle").concat(handleNr, " el-slider-handle").concat(handleNr, "\" id=\"").concat(this.id, "-handle").concat(handleNr, "\" data-parent-id=\"").concat(this.id, "\" style=\"left: ").concat(offset, "\">\n    <span class=\"").concat(this.id, "-handle1-indicator el-slider-handle").concat(handleNr, "-indicator\" id=\"").concat(this.id, "-handle").concat(handleNr, "-indicator\"></span>\n    </div>");
+      return html;
     }
-  };
+  }, {
+    key: "prepareMarkup",
+    value: function prepareMarkup() {
+      var handle1 = this.prepareHandle(1),
+          handle2 = this.prepareHandle(2);
+      var html = "<div class=\"el-slider-wrap\" > \n      <div id=\"".concat(this.id, "-el-slider\" class=\"el-slider ").concat(this.id, "-el-slider\">").concat(handle1).concat(handle2, "</div> \n      <div id=\"").concat(this.id, "-value1\" class=\"el-slider-value ").concat(this.id, "-value\"></div > \n      <div id=\"").concat(this.id, "-value2\" class=\"el-slider-value ").concat(this.id, "-value\" > \n      </div>\n      </div>");
+      return html;
+    }
+  }, {
+    key: "renderMarkup",
+    value: function renderMarkup() {
+      var html = this.prepareMarkup(),
+          wrapper = document.querySelector("#" + this.id);
+
+      if (wrapper) {
+        wrapper.innerHTML = html;
+      }
+    }
+  }]);
 
   return Renderer;
 }();
@@ -84,17 +109,15 @@ var defaults = {
     height: 20
   }
 };
-
-var Actions =
-/** @class */
-function () {
+var Actions = /*#__PURE__*/function () {
   function Actions(id, params) {
     var _this = this;
+
+    _classCallCheck(this, Actions);
+
     /*=============================================
     =            Setup options            =
     =============================================*/
-
-
     this.setupOptions = function () {
       var elId = "#" + _this.id + "-el-slider";
       var el = document.querySelector(elId);
@@ -284,15 +307,15 @@ function () {
       _this.updateValue();
     };
 
-    this.opts = __assign(__assign({}, defaults), params);
+    this.opts = Object.assign(Object.assign({}, defaults), params);
     this.id = id.indexOf("#") !== -1 ? id.substr(1) : id;
     this.canmoveHandle = false;
     this.EVstart = "ontouchstart" in document.documentElement ? "touchstart" : "mousedown";
     this.EVmove = "ontouchstart" in document.documentElement ? "touchmove" : "mousemove";
     this.EVend = "ontouchstart" in document.documentElement ? "touchend" : "mouseup";
     var elem = document.querySelector("#" + this.id + " .el-slider");
-    this.handle1Elem = document.getElementById(this.id + "-handle1");
-    this.handle2Elem = document.getElementById(this.id + "-handle2");
+    this.handle1Elem = document.getElementById("".concat(this.id, "-handle1"));
+    this.handle2Elem = document.getElementById("".concat(this.id, "-handle2"));
     this.setupEvents(elem);
     this.setupOptions();
     this.updateValue(true);
@@ -302,54 +325,58 @@ function () {
   =============================================*/
 
 
-  Actions.prototype.updateValue = function (isInit) {
-    if (isInit === void 0) {
-      isInit = false;
-    }
+  _createClass(Actions, [{
+    key: "updateValue",
+    value: function updateValue() {
+      var isInit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-    if (isInit) {
-      var output1 = document.getElementById(this.id + "-value1"),
-          output2 = document.getElementById(this.id + "-value2");
+      if (isInit) {
+        var output1 = document.getElementById(this.id + "-value1"),
+            output2 = document.getElementById(this.id + "-value2");
 
-      if (output1 && output2) {
-        output1.innerHTML = this.opts.handle1.start.toFixed(2);
-        output2.innerHTML = this.opts.range.toFixed(2);
+        if (output1 && output2) {
+          output1.innerHTML = this.opts.handle1.start.toFixed(2);
+          output2.innerHTML = this.opts.range.toFixed(2);
+        }
+      } else {
+        var v = mapRange(this.opts.currentHandle.leftOffset, 0, this.opts.sliderWidth, 0, this.opts.range); // 0
+
+        var value = roundTo(v, this.opts.step);
+        this.opts.value = value;
+        var output = document.getElementById(this.opts.outputId);
+        output.innerHTML = this.opts.value.toFixed(2);
       }
-    } else {
-      var v = mapRange(this.opts.currentHandle.leftOffset, 0, this.opts.sliderWidth, 0, this.opts.range); // 0
-
-      var value = roundTo(v, this.opts.step);
-      this.opts.value = value;
-      var output = document.getElementById(this.opts.outputId);
-      output.innerHTML = this.opts.value.toFixed(2);
     }
-  };
+  }]);
 
   return Actions;
 }();
 
-var ElemSlider =
-/** @class */
-function () {
+var ElemSlider = /*#__PURE__*/function () {
   function ElemSlider(elemId, params) {
+    _classCallCheck(this, ElemSlider);
+
     this.id = elemId.indexOf("#") !== -1 ? elemId.substr(1) : elemId; //  this.opts = { ...defaults, ...params };
 
-    this.opts = __assign({}, params);
+    this.opts = Object.assign({}, params);
     var el = document.getElementById(this.id);
 
     if (el) {
       var renderer = new Renderer(this.id);
       renderer.renderMarkup();
-      var actions = new Actions(this.id, __assign({}, this.opts));
+      var actions = new Actions(this.id, Object.assign({}, this.opts));
     } else {
-      console.log("Element with id: #" + this.id + " does not exist");
+      console.log("Element with id: #".concat(this.id, " does not exist"));
     }
   }
 
-  ElemSlider.prototype.printOptions = function () {
-    console.log(this.opts);
-    console.log(this.id);
-  };
+  _createClass(ElemSlider, [{
+    key: "printOptions",
+    value: function printOptions() {
+      console.log(this.opts);
+      console.log(this.id);
+    }
+  }]);
 
   return ElemSlider;
 }();
